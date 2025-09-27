@@ -30,8 +30,8 @@ module.exports = {
     AUTO_REACT : process.env.AUTO_REACT || 'no',
     AUTO_REACT_STATUS : process.env.AUTO_REACT_STATUS || 'yes',
     AUTO_READ : process.env.AUTO_READ || 'yes',
-    CHAT_BOT: process.env.CHAT_BOT || 'yes',
-    AUDIO_REPLY: process.env.AUDIO_REPLY || 'no',
+    AUTO_SAVE_CONTACTS : process.env.AUTO_SAVE_CONTACTS || 'yes',
+    CHATBOT: process.env.CHATBOT || 'yes',
     DATABASE_URL,
     DATABASE: DATABASE_URL === databasePath
         ? "postgresql://postgres:bKlIqoOUWFIHOAhKxRWQtGfKfhGKgmRX@viaduct.proxy.rlwy.net:47738/railway"
