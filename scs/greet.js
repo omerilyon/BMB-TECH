@@ -1,10 +1,10 @@
-//=============== CHATBOT ===============//
+//=============== GREET ===============//
 const { bmbtz } = require("../devbmb/bmbtz");
 const s = require("../settings");
 
-// Chatbot function setup
+// Greet function setup
 bmbtz({
-  nomCom: 'chatbot',
+  nomCom: 'greet',
   categorie: "settings"
 }, async (chatId, zk, context) => {
   const { ms, repondre, superUser, arg } = context;
@@ -30,12 +30,12 @@ bmbtz({
   if (!arg[0]) {
     const helpBox = `
 ╔══════════════════╗
-   🤖 *CHATBOT MODE* 🤖
+   👋 *GREET MODE* 👋
 ╚══════════════════╝
 
 👉 Usage:
-- Type: *chatbot yes*  to enable
-- Type: *chatbot no*   to disable
+- Type: *greet yes*  to enable
+- Type: *greet no*   to disable
     `;
     return zk.sendMessage(chatId, { text: helpBox, ...newsletterContext }, { quoted: ms });
   }
@@ -45,23 +45,23 @@ bmbtz({
 
   switch (option) {
     case "yes":
-      s.CHATBOT = 'yes';  // Enable Chatbot
-      responseMessage = "✅ Chatbot has been *enabled* successfully.";
+      s.AUTO_REPLY = 'yes';  // Enable Auto Greet
+      responseMessage = "✅ Greet mode has been *enabled* successfully.";
       break;
 
     case "no":
-      s.CHATBOT = 'no';   // Disable Chatbot
-      responseMessage = "❌ Chatbot has been *disabled* successfully.";
+      s.AUTO_REPLY = 'no';   // Disable Auto Greet
+      responseMessage = "❌ Greet mode has been *disabled* successfully.";
       break;
 
     default:
-      responseMessage = "❌ Invalid option.\nUse: *chatbot yes* or *chatbot no*.";
+      responseMessage = "❌ Invalid option.\nUse: *greet yes* or *greet no*.";
   }
 
   // Send the response message in a box
   const replyBox = `
 ╔══════════════════╗
-   🤖 *CHATBOT MODE* 🤖
+   👋 *GREET MODE* 👋
 ╚══════════════════╝
 
 ${responseMessage}
@@ -70,7 +70,7 @@ ${responseMessage}
   try {
     await zk.sendMessage(chatId, { text: replyBox, ...newsletterContext }, { quoted: ms });
   } catch (error) {
-    console.error("Error processing chatbot command:", error);
+    console.error("Error processing greet command:", error);
     await zk.sendMessage(chatId, { text: '⚠️ Error processing your request.' }, { quoted: ms });
   }
 });

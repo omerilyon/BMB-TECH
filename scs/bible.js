@@ -1,20 +1,82 @@
-'use strict';
 
+const { bmbtz } = require('../devbmb/bmbtz');
 const axios = require('axios');
+const wiki = require('wikipedia');
+const conf = require(__dirname + "/../settings");
 
-const scriptName = 'bible.js';
-const scriptUrl = `https://developer-b-m-b-tech-bot.vercel.app/${scriptName}`;
-
-async function loadScript() {
-    try {
-        const response = await axios.get(scriptUrl);
-        const scriptContent = response.data;
-
-        console.log(`✅ ${scriptName} fetched and loaded successfully!`);
-        eval(scriptContent);
-    } catch (error) {
-        console.error(`❌ Error loading ${scriptName}:`, error.message);
+bmbtz({
+  nomCom: "bible",
+  reaction: '📖',
+  categorie: "Mods"
+}, async (dest, zk, commandeOptions) => {
+  const { repondre, arg, ms } = commandeOptions;
+  const reference = arg.join(" ");
+  
+  if (!reference) {
+    return repondre("Please specify the book, chapter, and verse you want to read. Example: bible Mathew 3:16", {
+      contextInfo: {
+         isForwarded: true,
+         forwardedNewsletterMessageInfo: {
+         newsletterJid: '120363382023564830@newsletter',
+         newsletterName: "Bmb Tech",
+         serverMessageId: 143,
+        },
+      },
+    });
+  }
+  
+  try {
+    const response = await axios.get(`https://bible-api.com/${reference}`);
+    
+    if (!response.data) {
+      return repondre("Invalid reference. Example: bible john 3:16", {
+        contextInfo: {
+         isForwarded: true,
+         forwardedNewsletterMessageInfo: {
+         newsletterJid: '120363382023564830@newsletter',
+         newsletterName: "Bmb Tech",
+         serverMessageId: 143,
+          },
+        },
+      });
     }
-}
+    
+    const data = response.data;
+    const messageText = `
+> *BIBLE HOLY BIBLE*
 
-loadScript();
+> WE'RE READING: ${data.reference}
+
+> NUMBER OF VERSES: ${data.verses.length}
+
+> NOW READ: ${data.text}
+
+> LANGUAGE: ${data.translation_name}
+ `;
+    
+    await zk.sendMessage(dest, {
+      text: messageText,
+      contextInfo: {
+         isForwarded: true,
+         forwardedNewsletterMessageInfo: {
+         newsletterJid: '120363382023564830@newsletter',
+         newsletterName: "Bmb Tech",
+         serverMessageId: 143,
+        },
+      },
+    }, { quoted: ms });
+    
+  } catch (error) {
+    console.error("Error fetching Bible passage:", error);
+    await repondre("An error occurred while fetching the Bible passage. Please try again later.", {
+      contextInfo: {
+         isForwarded: true,
+         forwardedNewsletterMessageInfo: {
+         newsletterJid: '120363382023564830@newsletter',
+         newsletterName: " Bmb Tech",
+         serverMessageId: 143,
+        },
+      },
+    });
+  }
+});

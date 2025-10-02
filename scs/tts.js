@@ -1,20 +1,74 @@
-'use strict';
+const googleTTS = require('google-tts-api');
+const {bmbtz} = require("../devbmb/bmbtz");
 
-const axios = require('axios');
 
-const scriptName = 'tts.js';
-const scriptUrl = `https://developer-b-m-b-tech-bot.vercel.app/${scriptName}`;
+bmbtz( {
+  nomCom : "dit",
+ categorie : "User",
+  reaction : "👄" },
+      async(dest,zk, commandeOptions)=> {
+ 
+const {ms,arg,repondre} = commandeOptions;
+      if (!arg[0]) {repondre("Insert a word");return} ;
+ const mots = arg.join(" ")
 
-async function loadScript() {
-    try {
-        const response = await axios.get(scriptUrl);
-        const scriptContent = response.data;
+const url = googleTTS.getAudioUrl( mots, {
+  lang: 'fr',
+  slow: false,
+  host: 'https://translate.google.com',
+});
+console.log(url); 
+             zk.sendMessage(dest, { audio: { url:url},mimetype:'audio/mp4' }, { quoted: ms,ptt: true });
 
-        console.log(`✅ ${scriptName} fetched and loaded successfully!`);
-        eval(scriptContent);
-    } catch (error) {
-        console.error(`❌ Error loading ${scriptName}:`, error.message);
-    }
+
+        
 }
+) ;
 
-loadScript();
+bmbtz( {
+  nomCom : "itta",
+ categorie : "User",
+  reaction : "👄" },
+      async(dest,zk, commandeOptions)=> {
+ 
+const {ms,arg,repondre} = commandeOptions;
+      if (!arg[0]) {repondre("Insert a word");return} ;
+ const mots = arg.join(" ")
+
+const url = googleTTS.getAudioUrl( mots, {
+  lang: 'ja',
+  slow: false,
+  host: 'https://translate.google.com',
+});
+console.log(url); 
+             zk.sendMessage(dest, { audio: { url:url},mimetype:'audio/mp4' }, { quoted: ms,ptt: true });
+
+
+        
+}
+) ;
+
+bmbtz( {
+  nomCom : "say",
+ categorie : "User",
+  reaction : "👄" },
+      async(dest,zk, commandeOptions)=> {
+ 
+const {ms,arg,repondre} = commandeOptions;
+      if (!arg[0]) {repondre("Insert a word");return} ;
+ const mots = arg.join(" ")
+
+const url = googleTTS.getAudioUrl( mots, {
+  lang: 'en',
+  slow: false,
+  host: 'https://translate.google.com',
+});
+console.log(url); 
+             zk.sendMessage(dest, { audio: { url:url},mimetype:'audio/mp4' }, { quoted: ms,ptt: true });
+
+
+        
+}
+) ;
+
+  

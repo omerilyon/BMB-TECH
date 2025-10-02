@@ -1,20 +1,40 @@
-'use strict';
 
-const axios = require('axios');
+const { bmbtz } = require('../devbmb/bmbtz');
+const {ajouterUtilisateurAvecWarnCount , getWarnCountByJID , resettingsWarnCountByJID} = require('../lib/warn')
+const s = require("../settings")
 
-const scriptName = 'warn.js';
-const scriptUrl = `https://developer-b-m-b-tech-bot.vercel.app/${scriptName}`;
 
-async function loadScript() {
-    try {
-        const response = await axios.get(scriptUrl);
-        const scriptContent = response.data;
+bmbtz(
+    {
+        nomCom : 'warn',
+        categorie : 'Group'
+        
+    },async (dest,zk,commandeOptions) => {
 
-        console.log(`✅ ${scriptName} fetched and loaded successfully!`);
-        eval(scriptContent);
-    } catch (error) {
-        console.error(`❌ Error loading ${scriptName}:`, error.message);
-    }
+ const {ms , arg, repondre,superUser,verifGroupe,verifAdmin , msgRepondu , auteurMsgRepondu} = commandeOptions;
+if(!verifGroupe ) {repondre('this is a group commands') ; return};
+
+if(verifAdmin || superUser) {
+   if(!msgRepondu){repondre('reply a message of user to warn'); return};
+   
+   if (!arg || !arg[0] || arg.join('') === '') {
+    await ajouterUtilisateurAvecWarnCount(auteurMsgRepondu)
+   let warn = await getWarnCountByJID(auteurMsgRepondu)
+   let warnlimit = s.WARN_COUNT
+   
+   if( warn >= warnlimit ) { await repondre('this user reach limit of warning , so i kick him/her');
+                zk.groupParticipantsUpdate(dest, [auteurMsgRepondu], "remove")
+ } else { 
+
+    var rest = warnlimit - warn ;
+     repondre(`this user is warn , rest before kick : ${rest} `)
+   }
+} else if ( arg[0] === 'resettings') { await resettingsWarnCountByJID(auteurMsgRepondu) 
+
+    repondre("Warn count is resettings for this user")} else ( repondre('reply to a user by typing  .warn ou .warn resettings'))
+   
+}  else {
+    repondre('you are not admin')
 }
-
-loadScript();
+ 
+   });

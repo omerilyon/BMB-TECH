@@ -13,7 +13,7 @@ function list(text, fancy) {
     let msg = '\n*Availabe Fancy styles for Bmb-Tech:*\n\n';
     for (let style in styles) {
         if (style == 33) {
-            msg += (parseInt(style) + 1) + '. ' + 'bmb-tech' + '\n';
+            msg += (parseInt(style) + 1) + '. ' + 'bmbtech' + '\n';
         } else {
             msg += (parseInt(style) + 1) + '. ' + fancy.apply(fancy[parseInt(style)], text) + '\n';
         }

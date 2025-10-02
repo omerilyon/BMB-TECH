@@ -13,7 +13,7 @@ const quotedContact = {
   message: {
     contactMessage: {
       displayName: "B.M.B VERIFIED ✅",
-      vcard: "BEGIN:VCARD\nVERSION:3.0\nFN:B.M.B VERIFIED ✅nORG:BMB-TECH BOT;\nTEL;type=CELL;type=VOICE;waid=255767862487:+255767862457\nEND:VCARD"
+      vcard: "BEGIN:VCARD\nVERSION:3.0\nFN:B.M.B VERIFIED ✅ nORG:BMB-TECH BOT;\nTEL;type=CELL;type=VOICE;waid=255767862487:+255767862457\nEND:VCARD"
     }
   }
 };
@@ -24,15 +24,15 @@ const newsletterContext = {
   isForwarded: true,
   forwardedNewsletterMessageInfo: {
     newsletterJid: "120363382023564830@newsletter",
-    newsletterName: "BMB-TECH",
+    newsletterName: "B.M.B-TECH",
     serverMessageId: 1
   }
 };
 
 bmbtz({
   nomCom: "fb",
-  categorie: "Download",
-  reaction: "⌛"
+  categorie: "download",
+  reaction: "🔎"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms, arg } = commandeOptions;
 
@@ -73,8 +73,8 @@ Lien: ${result.url}
 
 bmbtz({
   nomCom: "fb2",
-  categorie: "Download",
-  reaction: "⌛"
+  categorie: "download",
+  reaction: "🔎"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms, arg } = commandeOptions;
 
@@ -108,8 +108,8 @@ Lien: ${result.url}
         repondre(error);
       });
   } catch (error) {
-    console.error('Erreur lors du t茅l茅chargement de la vid茅o :', error);
+    console.error('Erreur lors du to chargement de la vid茅o :', error);
     repondre('Erreur lors du t茅l茅chargement de la vid茅o.', error);
   }
 });
-
+          

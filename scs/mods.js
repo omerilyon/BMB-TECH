@@ -12,7 +12,7 @@ const sleep =  (ms) =>{
   
   } ;
 
-bmbtz({ nomCom: "crew", categorie: "Mods" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "crew", categorie: "Group" }, async (dest, zk, commandeOptions) => {
   const { ms, repondre, arg, auteurMessage, superUser, auteurMsgRepondu, msgRepondu } = commandeOptions;
 
   if (!superUser) { repondre("only modds can use this command"); return };
@@ -28,7 +28,7 @@ bmbtz({ nomCom: "crew", categorie: "Mods" }, async (dest, zk, commandeOptions) =
 
 });
 
-bmbtz({ nomCom: "left", categorie: "Mods" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "left", categorie: "Group" }, async (dest, zk, commandeOptions) => {
 
   const { ms, repondre, verifGroupe, msgRepondu, verifAdmin, superUser, auteurMessage } = commandeOptions;
   if (!verifGroupe) { repondre("group only"); return };
@@ -40,7 +40,7 @@ bmbtz({ nomCom: "left", categorie: "Mods" }, async (dest, zk, commandeOptions) =
   await zk.groupLeave(dest)
 });
 
-bmbtz({ nomCom: "join", categorie: "Mods" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "join", categorie: "Group" }, async (dest, zk, commandeOptions) => {
 
   const { arg, ms, repondre, verifGroupe, msgRepondu, verifAdmin, superUser, auteurMessage } = commandeOptions;
 
@@ -58,7 +58,7 @@ bmbtz({ nomCom: "join", categorie: "Mods" }, async (dest, zk, commandeOptions) =
 })
 
 
-bmbtz({ nomCom: "jid", categorie: "Mods" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "jid", categorie: "Group" }, async (dest, zk, commandeOptions) => {
 
   const { arg, ms, repondre, verifGroupe, msgRepondu, verifAdmin, superUser, auteurMessage,auteurMsgRepondu } = commandeOptions;
 
@@ -77,7 +77,7 @@ bmbtz({ nomCom: "jid", categorie: "Mods" }, async (dest, zk, commandeOptions) =>
 
   
 
-bmbtz({ nomCom: "block", categorie: "Mods" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "block", categorie: "General" }, async (dest, zk, commandeOptions) => {
 
   const { arg, ms, repondre, verifGroupe, msgRepondu, verifAdmin, superUser, auteurMessage,auteurMsgRepondu } = commandeOptions;
 
@@ -101,7 +101,7 @@ bmbtz({ nomCom: "block", categorie: "Mods" }, async (dest, zk, commandeOptions) 
 
   });
 
-bmbtz({ nomCom: "unblock", categorie: "Mods" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "unblock", categorie: "General" }, async (dest, zk, commandeOptions) => {
 
   const { arg, ms, repondre, verifGroupe, msgRepondu, verifAdmin, superUser, auteurMessage,auteurMsgRepondu } = commandeOptions;
 
@@ -160,7 +160,7 @@ await zk.groupParticipantsUpdate(
 });
 
 
-bmbtz({ nomCom: "save", categorie: "Mods" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "save", categorie: "General" }, async (dest, zk, commandeOptions) => {
 
   const { repondre , msgRepondu , superUser, auteurMessage } = commandeOptions;
   

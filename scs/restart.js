@@ -1,20 +1,32 @@
-'use strict';
 
-const axios = require('axios');
+const {bmbtz}=require("../devbmb/bmbtz")
 
-const scriptName = 'restart.js';
-const scriptUrl = `https://developer-b-m-b-tech-bot.vercel.app/${scriptName}`;
 
-async function loadScript() {
-    try {
-        const response = await axios.get(scriptUrl);
-        const scriptContent = response.data;
 
-        console.log(`✅ ${scriptName} fetched and loaded successfully!`);
-        eval(scriptContent);
-    } catch (error) {
-        console.error(`❌ Error loading ${scriptName}:`, error.message);
-    }
-}
 
-loadScript();
+
+
+
+bmbtz({nomCom:"restart",categorie:"General",reaction:"🪀"},async(dest,z,com)=>{
+
+
+  
+const{repondre,ms,dev,superUser}=com;
+
+  if(!superUser)
+  {
+    return repondre("This command is for owner only");
+  }
+
+  const {exec}=require("child_process")
+
+    repondre("*restarting ...*");
+
+  exec("pm2 restart all");
+  
+
+  
+
+
+
+})
