@@ -10,7 +10,7 @@ const JavaScriptObfuscator = require("javascript-obfuscator");
  */
 const commandInfo = {
   nomCom: "encrypt",
-  categorie: "Coding",
+  categorie: "General",
 };
 
 /**
