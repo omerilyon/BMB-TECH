@@ -18,7 +18,7 @@ const quotedContact = {
 
 bmbtz({
   nomCom: "rw",
-  categorie: "ai",
+  categorie: "Search",
   reaction: "🌌"
 }, async (jid, sock, { arg, ms, repondre }) => {
   try {
