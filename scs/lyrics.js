@@ -19,7 +19,7 @@ const verifiedContact = {
 bmbtz({
   nomCom: "lyrics",
   reaction: '🎵',
-  categorie: "Music",
+  categorie: "Search",
   aliases: ["lyric", "mistari"]
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
