@@ -16,7 +16,7 @@ const quotedContact = {
         "VERSION:3.0\n" +
         "FN:B.M.B VERIFIED ✅\n" +
         "ORG:BMB-TECH BOT;\n" +
-        "TEL;type=CELL;type=VOICE;waid=254700000001:+254 700 000001\n" +
+        "TEL;type=CELL;type=VOICE;waid=255767862457:+255767862457\n" +
         "END:VCARD"
     }
   }
@@ -41,7 +41,7 @@ const contextInfo = {
   }
 };
 
-bmbtz({ nomCom: "videologo", categorie: "download", reaction: "🔎" }, async (dest, zk, commandeOptions) => {
+bmbtz({ nomCom: "videologo", categorie: "Search", reaction: "🔎" }, async (dest, zk, commandeOptions) => {
   const { ms, repondre, arg } = commandeOptions;
   const text = arg.join(" ");
 
