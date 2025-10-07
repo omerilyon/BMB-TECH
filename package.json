@@ -2,10 +2,10 @@
   "name": "B.M.B-TECH",
   "version": "2.0.0",
   "description": "WhatsApp Multi Device Bot",
-  "main": "index.js",
+  "main": "bmbtech.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node index.js"
+    "start": "node bmbtech.js"
   },
   "keywords": [
     "termux",
